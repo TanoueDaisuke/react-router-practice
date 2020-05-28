@@ -1,17 +1,51 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = () => {
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  const Home = () => (
+    <div> <h2>TKTL notes app</h2> </div>
+  )
+  
+  const Notes = () => (
+    <div> <h2>Notes</h2> </div>
+  )
+  
+  const Users = () => (
+    <div> <h2>Users</h2> </div>
+  )
+
+  const padding = {
+    padding: 5
+  }
+
+  return (
+    <Router>
+      <div>
+        <Link style={padding} to="/">home</Link>
+        <Link style={padding} to="/users">users</Link>
+        <Link style={padding} to="/notes">notes</Link>
+      </div>
+
+      <Switch>
+        <Route path="/notes">
+          <Notes />
+        </Route>
+        <Route path="/users">
+          <Users />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+
+      <div>
+        <i>Note app, Department of Computer Science 2020</i>
+      </div>
+    </Router>
+  )
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))
+
