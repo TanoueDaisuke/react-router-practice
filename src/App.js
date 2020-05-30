@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 import Notes from './components/Notes'
+import Note from './components/Note'
 
 const App = () => {
 
@@ -22,7 +23,8 @@ const App = () => {
 
   const notes = [{
     id: 1,
-    content: "てすと１"
+    content: "てすと１",
+    important: true
   }]
 
   return (
@@ -35,7 +37,7 @@ const App = () => {
 
       <Switch>
         <Route path="/notes/:id">
-          <Notes notes={notes} />
+          <Note notes={notes} />
         </Route>
         <Route path="/notes">
           <Notes notes={notes} />
