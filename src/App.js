@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
+import { 
+  BrowserRouter as Router, 
+  Switch, 
+  Route,
+  Link, 
+  Redirect,
+  useRouteMatch
+} from 'react-router-dom'
 
 import Notes from './components/Notes'
 import Note from './components/Note'
@@ -39,6 +46,11 @@ const App = () => {
     padding: 5
   }
 
+  const match = useRouteMatch('notes/:id')
+  const note = match
+    ? notes.find(note => note.id === Number(match.params.id))
+    : null
+
   return (
     <>
       <Router>
@@ -54,7 +66,7 @@ const App = () => {
 
         <Switch>
           <Route path="/notes/:id">
-            <Note notes={notes} />
+            <Note note={note} />
           </Route>
           <Route path="/notes">
             <Notes notes={notes} />
@@ -70,7 +82,7 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
-      
+
       <div>
         <br/>
         <em>Note app, Department of Computer Science 2020</em>
