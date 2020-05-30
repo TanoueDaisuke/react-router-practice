@@ -27,12 +27,18 @@ const App = () => {
     important: true
   }]
 
+  const user = 'てすとゆーざー'
+
   return (
     <Router>
       <div>
         <Link style={padding} to="/">home</Link>
         <Link style={padding} to="/users">users</Link>
         <Link style={padding} to="/notes">notes</Link>
+        {user 
+          ? <em>{user} logged in</em> 
+          : <Link style={padding} to="/login">login</Link>
+        }
       </div>
 
       <Switch>
