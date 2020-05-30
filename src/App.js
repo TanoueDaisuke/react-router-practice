@@ -1,12 +1,30 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 
 import Notes from './components/Notes'
 import Note from './components/Note'
+import Login from './components/Login'
 
 const App = () => {
 
-  // const [notes, setNotes] = useState()
+  const [notes, setNotes] = useState([
+    {
+      id: 1,
+      content: "てすと１",
+      important: true
+    },
+    {
+      id: 2,
+      content: "てすと２",
+      important: false
+    },
+  ])
+
+  const [user, setUser] = useState(null)
+
+  const login = (user) => {
+    setUser(user)
+  }
 
   const Home = () => (
     <div> <h2>TKTL notes app</h2> </div>
@@ -21,45 +39,43 @@ const App = () => {
     padding: 5
   }
 
-  const notes = [{
-    id: 1,
-    content: "てすと１",
-    important: true
-  }]
-
-  const user = 'てすとゆーざー'
-
   return (
-    <Router>
-      <div>
-        <Link style={padding} to="/">home</Link>
-        <Link style={padding} to="/users">users</Link>
-        <Link style={padding} to="/notes">notes</Link>
-        {user 
-          ? <em>{user} logged in</em> 
-          : <Link style={padding} to="/login">login</Link>
-        }
-      </div>
+    <>
+      <Router>
+        <div>
+          <Link style={padding} to="/">home</Link>
+          <Link style={padding} to="/users">users</Link>
+          <Link style={padding} to="/notes">notes</Link>
+          {user 
+            ? <em>{user} logged in</em> 
+            : <Link style={padding} to="/login">login</Link>
+          }
+        </div>
 
-      <Switch>
-        <Route path="/notes/:id">
-          <Note notes={notes} />
-        </Route>
-        <Route path="/notes">
-          <Notes notes={notes} />
-        </Route>
-        <Route path="/users">
-          <Users />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-
+        <Switch>
+          <Route path="/notes/:id">
+            <Note notes={notes} />
+          </Route>
+          <Route path="/notes">
+            <Notes notes={notes} />
+          </Route>
+          <Route path="/users">
+            { user ? <Users /> : <Redirect to="/login" />}
+          </Route>
+          <Router path="/login">
+            <Login onLogin={login} />
+          </Router>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+      
       <div>
-        <i>Note app, Department of Computer Science 2020</i>
+        <br/>
+        <em>Note app, Department of Computer Science 2020</em>
       </div>
-    </Router>
+    </>
   )
 }
 
