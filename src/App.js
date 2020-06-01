@@ -55,7 +55,7 @@ const App = () => {
   const note = notes[0] // ↑がエラー出るのでとりあえず
     
   return (
-    <>
+    <div className="container">
       <Router>
         <div>
           <Link style={padding} to="/">home</Link>
@@ -87,10 +87,11 @@ const App = () => {
       </Router>
 
       <div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus odit rem facere adipisci? Voluptates, adipisci debitis voluptate sequi similique unde! Architecto, eos. Illum inventore quas voluptatibus voluptates corrupti eius nihil.</p>
         <br/>
         <em>Note app, Department of Computer Science 2020</em>
       </div>
-    </>
+    </div>
   )
 }
 
