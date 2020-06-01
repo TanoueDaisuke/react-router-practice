@@ -5,7 +5,7 @@ import {
   Route,
   Link, 
   Redirect,
-  useRouteMatch
+  // useRouteMatch,
 } from 'react-router-dom'
 
 import Notes from './components/Notes'
@@ -26,31 +26,34 @@ const App = () => {
       important: false
     },
   ])
-
+  
   const [user, setUser] = useState(null)
-
+  
   const login = (user) => {
     setUser(user)
   }
-
+  
   const Home = () => (
     <div> <h2>TKTL notes app</h2> </div>
-  )
-  
-  
+    )
+    
+    
   const Users = () => (
     <div> <h2>Users</h2> </div>
-  )
-
+    )
+    
   const padding = {
     padding: 5
   }
-
-  const match = useRouteMatch('notes/:id')
-  const note = match
-    ? notes.find(note => note.id === Number(match.params.id))
-    : null
-
+    
+  // const match = useRouteMatch('/notes/:id')
+  // console.log(match);
+  
+  // const note = match
+  //   ? notes.find(note => note.id === Number(match.params.id))
+  //   : null
+  const note = notes[0] // ↑がエラー出るのでとりあえず
+    
   return (
     <>
       <Router>
