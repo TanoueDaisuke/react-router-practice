@@ -8,6 +8,7 @@ import {
   // useRouteMatch,
 } from 'react-router-dom'
 import { Container } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 
 import Notes from './components/Notes'
 import Note from './components/Note'
@@ -29,9 +30,15 @@ const App = () => {
   ])
   
   const [user, setUser] = useState(null)
+
+  const [message, setMessage] = useState(null)
   
   const login = (user) => {
     setUser(user)
+    setMessage(`welcome ${user}！！`)
+    setTimeout(() => {
+      setMessage(null)
+    }, 1000);
   }
   
   const Home = () => (
@@ -57,6 +64,14 @@ const App = () => {
     
   return (
     <Container>
+      <div>
+        {(message && 
+          <Alert serverity="success">
+            {message}
+          </Alert>
+          )}
+      </div>
+
       <Router>
         <div>
           <Link style={padding} to="/">home</Link>
