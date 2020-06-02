@@ -7,6 +7,7 @@ import {
   Redirect,
   // useRouteMatch,
 } from 'react-router-dom'
+import { Container } from '@material-ui/core'
 
 import Notes from './components/Notes'
 import Note from './components/Note'
@@ -55,7 +56,7 @@ const App = () => {
   const note = notes[0] // ↑がエラー出るのでとりあえず
     
   return (
-    <>
+    <Container>
       <Router>
         <div>
           <Link style={padding} to="/">home</Link>
@@ -90,7 +91,7 @@ const App = () => {
         <br/>
         <em>Note app, Department of Computer Science 2020</em>
       </div>
-    </>
+    </Container>
   )
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import { TextField, Button } from '@material-ui/core'
 
 const Login = props => {
   const history = useHistory()
@@ -15,12 +16,14 @@ const Login = props => {
       <h2>Login</h2>
       <form onSubmit={onSubmit}>
         <div>
-          username: <input type="text"/>
+          <TextField label="username" />
         </div>
         <div>
-          password: <input type="password" />
+          <TextField label="password" type="password" />
         </div>
-        <button type="submit">login</button>
+        <div>
+          <Button variant="contained" color="primary" type="submit">login</Button>
+        </div>
       </form>
     </div>
   )
