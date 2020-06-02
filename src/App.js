@@ -18,12 +18,14 @@ const App = () => {
     {
       id: 1,
       content: "てすと１",
-      important: true
+      important: true,
+      user: "テストユーザー1"
     },
     {
       id: 2,
       content: "てすと２",
-      important: false
+      important: false,
+      user: "テストユーザー２"
     },
   ])
   
