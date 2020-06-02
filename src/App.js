@@ -7,6 +7,7 @@ import {
   Redirect,
   // useRouteMatch,
 } from 'react-router-dom'
+import { Alert } from 'react-bootstrap'
 
 import Notes from './components/Notes'
 import Note from './components/Note'
@@ -30,9 +31,14 @@ const App = () => {
   ])
   
   const [user, setUser] = useState(null)
+  const [message, setMessage] = useState(null)
   
   const login = (user) => {
     setUser(user)
+    setMessage(`welcome ${user}！`)
+    setTimeout(() => {
+      setMessage(null)
+    }, 1000)
   }
   
   const Home = () => (
@@ -58,6 +64,12 @@ const App = () => {
     
   return (
     <div className="container">
+      {message && 
+        <Alert variant="success">
+          {message}
+        </Alert>
+      }
+      
       <Router>
         <div>
           <Link style={padding} to="/">home</Link>
