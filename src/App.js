@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom'
 import { Alert } from 'react-bootstrap'
 
+import Header from './components/Header'
 import Notes from './components/Notes'
 import Note from './components/Note'
 import Login from './components/Login'
@@ -50,10 +51,6 @@ const App = () => {
     <div> <h2>Users</h2> </div>
     )
     
-  const padding = {
-    padding: 5
-  }
-    
   // const match = useRouteMatch('/notes/:id')
   // console.log(match);
   
@@ -69,17 +66,10 @@ const App = () => {
           {message}
         </Alert>
       }
-      
+
       <Router>
-        <div>
-          <Link style={padding} to="/">home</Link>
-          <Link style={padding} to="/users">users</Link>
-          <Link style={padding} to="/notes">notes</Link>
-          {user 
-            ? <em>{user} logged in</em> 
-            : <Link style={padding} to="/login">login</Link>
-          }
-        </div>
+
+        <Header user={user} />
 
         <Switch>
           <Route path="/notes/:id">
