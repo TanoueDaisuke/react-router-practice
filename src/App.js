@@ -11,10 +11,26 @@ import {
 import Notes from './components/Notes'
 import Note from './components/Note'
 import Login from './components/Login'
+import styled from 'styled-components'
 
 const App = () => {
+  const Page = styled.div`
+    padding: 1em;
+    background: papayawhip;
+  `
 
-  const [notes, setNotes] = useState([
+  const Navigation = styled.div`
+    background: BurlyWood;
+    padding: 1em;
+  `
+
+  const Footer = styled.div`
+    background: Chocolate;
+    padding: 1em;
+    margin-top: 1em;
+  `
+
+  const[notes, setNotes] = useState([
     {
       id: 1,
       content: "てすと１",
@@ -55,9 +71,9 @@ const App = () => {
   const note = notes[0] // ↑がエラー出るのでとりあえず
     
   return (
-    <>
+    <Page>
       <Router>
-        <div>
+        <Navigation>
           <Link style={padding} to="/">home</Link>
           <Link style={padding} to="/users">users</Link>
           <Link style={padding} to="/notes">notes</Link>
@@ -65,7 +81,7 @@ const App = () => {
             ? <em>{user} logged in</em> 
             : <Link style={padding} to="/login">login</Link>
           }
-        </div>
+        </Navigation>
 
         <Switch>
           <Route path="/notes/:id">
@@ -86,11 +102,10 @@ const App = () => {
         </Switch>
       </Router>
 
-      <div>
-        <br/>
+      <Footer>
         <em>Note app, Department of Computer Science 2020</em>
-      </div>
-    </>
+      </Footer>
+    </Page>
   )
 }
 
